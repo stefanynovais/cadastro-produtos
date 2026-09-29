@@ -1,0 +1,23 @@
+<h1>Categorias</h1>
+
+<form action="/categorias" method="POST">
+    <label>Nome da categoria:</label>
+    <input type="text" name="nome" required>
+    <button type="submit">Salvar</button>
+</form>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+    </tr>
+
+    <% categorias.forEach(c => { %>
+        <tr>
+            <td><%= c.id %></td>
+            <td><%= c.nome %></td>
+        </tr>
+    <% }) %>
+</table>
+
+<a href="/produtos">Ver produtos</a>
