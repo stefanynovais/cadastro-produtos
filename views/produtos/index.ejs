@@ -1,12 +1,14 @@
 <h1>Produtos</h1>
 
-<a href="/produtos/novo">Novo produto</a>
+<a href="/produtos/novo">Novo produto</a> |
+<a href="/categorias">Categorias</a>
 
 <table border="1">
     <tr>
         <th>Nome</th>
         <th>Preço</th>
         <th>Quantidade</th>
+        <th>Categoria</th>
         <th>Ações</th>
     </tr>
 
@@ -16,20 +18,17 @@
             <td><%= p.nome %></td>
             <td><%= p.preco %></td>
             <td><%= p.quantidade %></td>
+            <td><%= p.Categoria ? p.Categoria.nome : 'Sem categoria' %></td>
 
             <td>
-                <a href="/produtos/<%= p.id %>/editar">
-                    Editar
-                </a>
+                <a href="/produtos/<%= p.id %>/editar">Editar</a>
 
                 <form
                     action="/produtos/<%= p.id %>/deletar"
                     method="POST"
                     style="display:inline"
                 >
-                    <button type="submit">
-                        Excluir
-                    </button>
+                    <button type="submit">Excluir</button>
                 </form>
             </td>
         </tr>

@@ -17,8 +17,16 @@
 
     <br>
 
-    <button type="submit">
-        Salvar
-    </button>
+    <label>Categoria:</label>
+    <select name="categoriaId" required>
+        <option value="">Selecione...</option>
+        <% categorias.forEach(c => { %>
+            <option value="<%= c.id %>"><%= c.nome %></option>
+        <% }) %>
+    </select>
+
+    <br>
+
+    <button type="submit">Salvar</button>
 
 </form>
