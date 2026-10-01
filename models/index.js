@@ -31,8 +31,8 @@ const Categoria = sequelize.define('Categoria', {
 });
 
 // Associação: uma categoria tem vários produtos
-Categoria.hasMany(Produto, { foreignKey: 'categoriaId' });
-Produto.belongsTo(Categoria, { foreignKey: 'categoriaId' });
+Categoria.hasMany(Produto, { foreignKey: 'categoriaId', as: 'produtos' });
+Produto.belongsTo(Categoria, { foreignKey: 'categoriaId', as: 'categoria' });
 
 module.exports = {
   sequelize,

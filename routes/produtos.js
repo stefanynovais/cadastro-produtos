@@ -4,7 +4,9 @@ const router = express.Router();
 const { Produto, Categoria } = require('../models');
 
 router.get('/', async (req, res) => {
-  const produtos = await Produto.findAll({ include: Categoria });
+  const produtos = await Produto.findAll({
+    include: { model: Categoria, as: 'categoria' }
+  });
 
   res.render('produtos/index', { produtos });
 });
@@ -22,6 +24,20 @@ router.post('/', async (req, res) => {
   } catch (err) {
     res.status(400).send('Erro ao salvar: ' + err.message);
   }
+});
+
+router.get('/categoria/:id', async (req, res) => {
+  const categoria = await Categoria.findByPk(req.params.id);
+
+  if (!categoria) {
+    return res.status(404).send('Categoria não encontrada');
+  }
+
+  const produtos = await Produto.findAll({
+    where: { categoriaId: req.params.id }
+  });
+
+  res.render('produtos/categoria', { categoria, produtos });
 });
 
 router.get('/:id/editar', async (req, res) => {
